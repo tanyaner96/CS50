@@ -26,7 +26,7 @@ int main(void)
             printf("#");
         }
         
-        printf(" ");
+        printf("  ");
         
         numHex = height - numSpaces;
         for(int count = 0;count < numHex; count = count + 1)

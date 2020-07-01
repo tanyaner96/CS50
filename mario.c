@@ -14,34 +14,31 @@ int main(void)
 
     for(int row = 1; row < height + 1; row = row + 1)
     {
+        //numSpaces - number of spaces before hex 
         int numSpaces = height - row;
         for (int count = 0; count < numSpaces; count = count + 1)
         {
             printf(" ");
         }
-
+        
+        //left side of pyramid
         int numHex = height - numSpaces;
         for(int count = 0;count < numHex; count = count + 1)
         {
             printf("#");
         }
-        
+
         printf("  ");
-        
+
+        //right side of pyramid
         numHex = height - numSpaces;
         for(int count = 0;count < numHex; count = count + 1)
         {
             printf("#");
         }
-        
-        //numSpaces = height - row;
-        //for (int count = 0; count < numSpaces; count = count + 1)
-        {
-           // printf(" ");
-        }
 
         printf("\n");
-        
+
     }
 }
 

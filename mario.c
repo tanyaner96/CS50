@@ -34,10 +34,10 @@ int main(void)
             printf("#");
         }
         
-        numSpaces = height - row;
-        for (int count = 0; count < numSpaces; count = count + 1)
+        //numSpaces = height - row;
+        //for (int count = 0; count < numSpaces; count = count + 1)
         {
-            printf(" ");
+           // printf(" ");
         }
 
         printf("\n");

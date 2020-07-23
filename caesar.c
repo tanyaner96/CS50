@@ -16,15 +16,15 @@ int main (int argc, string argv[])
     //convert string
     //return the ciphered text
 
-    string input = argv[1];
-    int length = strlen(input);
-
-    //convert string to number
-    int cipher;
-    cipher = atoi(input);
-
     if (argc == 2)
     {
+        string input = argv[1];
+        int length = strlen(input);
+
+        //convert string to number
+        int cipher;
+        cipher = atoi(input);
+        
         //check for positive nums
         if (cipher == 0 ||cipher < 0)
         {
@@ -52,8 +52,16 @@ int main (int argc, string argv[])
     else
     {
         printf("Usage: ./caesar key\n");
+        exit(0);
     }
 
+    string input = argv[1];
+    int length = strlen(input);
+
+    //convert string to number
+    int cipher;
+    cipher = atoi(input);
+    
     // prompt for text (Prompts even if no key oops)
     string text = get_string("plaintext: ");
 

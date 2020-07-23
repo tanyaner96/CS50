@@ -29,7 +29,7 @@ int main (int argc, string argv[])
         if (cipher == 0 ||cipher < 0)
         {
             printf("Usage: ./caesar key\n");
-            exit(0);
+            exit(1);
         }
         else
         {
@@ -43,7 +43,7 @@ int main (int argc, string argv[])
                 else
                 {
                     printf("Usage: ./caesar key\n");
-                    exit(0);
+                    exit(1);
                 }
             }
         }
@@ -52,7 +52,7 @@ int main (int argc, string argv[])
     else
     {
         printf("Usage: ./caesar key\n");
-        exit(0);
+        exit(1);
     }
 
     string input = argv[1];

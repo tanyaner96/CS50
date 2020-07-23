@@ -24,7 +24,7 @@ int main (int argc, string argv[])
         //convert string to number
         int cipher;
         cipher = atoi(input);
-        
+
         //check for positive nums
         if (cipher == 0 ||cipher < 0)
         {
@@ -33,7 +33,7 @@ int main (int argc, string argv[])
         }
         else
         {
-            // check for non numbers (doesn't work when is single digit and letter)
+            // check for non numbers
             for(int i=0; i<length; i++)
             {
                 if isdigit(input[i])
@@ -61,8 +61,8 @@ int main (int argc, string argv[])
     //convert string to number
     int cipher;
     cipher = atoi(input);
-    
-    // prompt for text (Prompts even if no key oops)
+
+    // prompt for text
     string text = get_string("plaintext: ");
 
 

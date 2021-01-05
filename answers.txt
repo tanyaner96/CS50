@@ -1,4 +1,4 @@
-sort1 uses: Merge sort
+sort1 uses: Bubble sort
 
 How do you know?: Sort1 took the longest to complete sorting the randomly shuffled numbers of the three. Merge sort has the longest running time of the three sorting methods, at O(n log n). Therefore, sort1 should be Merge sort.
 
@@ -6,6 +6,6 @@ sort2 uses: Selection sort
 
 How do you know?: Sort2 was the fastest in sorting the reversed numbers file. When sorting reversed number patterns, selection sort has the shortest running time. 
 
-sort3 uses: Bubble sort
+sort3 uses: Merge sort
 
 How do you know?: Sort3 was much faster in sorting the random numbers compared to sort1, but took much longer to sort the reverse numbers compared to sort2. As bubble sort does not fare well if the numbers are in a reversed order, but still has a shorter running time of O(n2), sort 3 should be bubble sort. 

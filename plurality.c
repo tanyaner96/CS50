@@ -121,11 +121,12 @@ void print_winner(void)
             if(candidates[winner].votes == candidates[i].votes)
             {
                 winner = i;
+                printf("%s \n", candidates[winner].name);
             }
         }
         
     }
-    printf("%s \n", candidates[winner].name);
+    
     
     return;
 }

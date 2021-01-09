@@ -100,7 +100,7 @@ void print_winner(void)
         //printf("%s ", candidates[i].name);
        // printf("%i \n", candidates[i].votes);
     }
-    //printf("\n");
+    
     int winner; 
     
     for (int i = 0; i < candidate_count; i++)
@@ -119,22 +119,6 @@ void print_winner(void)
         }
     }
     
-    
-    //printf("%s \n", candidates[winner].name);
-    
-    //Check for second winner
-    //for (int i = 0; i < candidate_count; i++)
-    {
-        //if (strcmp(candidates[winner].name, candidates[i].name) != 0)
-        {
-            //if(candidates[winner].votes == candidates[i].votes)
-            {
-                //winner = i;
-               // printf("%s \n", candidates[winner].name);
-            }
-        }
-        
-    }
     
     return;
 }

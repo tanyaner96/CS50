@@ -111,22 +111,30 @@ void print_winner(void)
         }
     }
     
-    printf("%s \n", candidates[winner].name);
-    
-    //Check for second winner
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[winner].name, candidates[i].name) != 0)
+        if (candidates[i].votes == candidates[winner].votes)
         {
-            if(candidates[winner].votes == candidates[i].votes)
+            printf("%s \n", candidates[i].name);
+        }
+    }
+    
+    
+    //printf("%s \n", candidates[winner].name);
+    
+    //Check for second winner
+    //for (int i = 0; i < candidate_count; i++)
+    {
+        //if (strcmp(candidates[winner].name, candidates[i].name) != 0)
+        {
+            //if(candidates[winner].votes == candidates[i].votes)
             {
-                winner = i;
-                printf("%s \n", candidates[winner].name);
+                //winner = i;
+               // printf("%s \n", candidates[winner].name);
             }
         }
         
     }
-    
     
     return;
 }

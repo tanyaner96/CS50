@@ -77,13 +77,13 @@ bool vote(string name)
             return true;
         }
     }
-    
+
     // TODO
-    //If name matches one of names of candidates in the election, update candidate’s vote total to account for new vote. 
-    //Vote function should return true to indicate a successful ballot 
+    //If name matches one of names of candidates in the election, update candidate’s vote total to account for new vote.
+    //Vote function should return true to indicate a successful ballot
     //If name does not match any candidates, no vote totals should change
     //Vote function should return false to indicate invalid ballot
-    
+
     return false;
 }
 
@@ -93,16 +93,16 @@ void print_winner(void)
     // TODO
     //The function should print out the name of the candidate who received the most votes in the election, and then print a newline.
     //If tie, output the names of each of the winning candidates, each on a separate line.
-    
+
     //Display list of votes
     //for (int i = 0; i < candidate_count; i++)
     {
         //printf("%s ", candidates[i].name);
        // printf("%i \n", candidates[i].votes);
     }
-    
-    int winner; 
-    
+
+    int winner;
+
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes>candidates[i-1].votes)
@@ -110,16 +110,16 @@ void print_winner(void)
            winner = i;
         }
     }
-    
+
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == candidates[winner].votes)
         {
-            printf("%s \n", candidates[i].name);
+            printf("%s\n", candidates[i].name);
         }
     }
-    
-    
+
+
     return;
 }
 

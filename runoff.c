@@ -153,19 +153,22 @@ void tabulate(void)
     
     for (int i = 0; i < voter_count; i++)
     {
+        //int k = preferences[i][0];
+        //int h = preferences[i][1];
+        //int g = preferences[i][2];
+        
         if (candidates[preferences[i][0]].eliminated == 1) // if candidate has not been eliminated
         {
             candidates[preferences[i][0]].votes = candidates[preferences[i][0]].votes + 1;
         }
-        else if (candidates[preferences[i][0]].eliminated == 0)// if candidate 0 has been eliminated
+        else if (candidates[preferences[i][1]].eliminated == 1)// if candidate 0 has been eliminated, check if candidate 1 has been eliminated
         {
             candidates[preferences[i][1]].votes = candidates[preferences[i][1]].votes + 1;
         }
-        else if (candidates[preferences[i][1]].eliminated == 0)// if candidate 1 has been eliminated
+        else if (candidates[preferences[i][2]].eliminated == 1)// if candidate 1 has been eliminated, check if candidate 2 has been eliminated
         {
             candidates[preferences[i][2]].votes = candidates[preferences[i][2]].votes + 1;
         }
-        
     }
     
     return;

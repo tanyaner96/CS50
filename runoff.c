@@ -218,9 +218,9 @@ bool is_tie(int min)
     {
         if (candidates[i].eliminated == false) // if not eliminated
         {
-            if (candidates[i].votes != min)
+            if (candidates[i].votes == min)
             {
-                return false; // if the vote is not the same as minimum, no tie, return false?
+                return true; // if the vote is not the same as minimum, no tie, return false?
             }
         }
     }

@@ -192,13 +192,13 @@ int find_min(void)
 {
     // TODO
     // return the minimum vote total for any candidate who is still in the election
-    int min;
+    int min = voter_count + 1;
     
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].eliminated == false)
         {
-            if (candidates[i].votes < candidates[i-1].votes)
+            if (candidates[i].votes < min)
             {
                 min = i;
             }

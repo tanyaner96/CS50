@@ -218,13 +218,13 @@ bool is_tie(int min)
     {
         if (candidates[i].eliminated == false) // if not eliminated
         {
-            if (candidates[i].votes == min)
+            if (candidates[i].votes != min)
             {
-                return true; // if the vote is not the same as minimum, no tie, return false?
+                return false; // if the vote is not the same as minimum, no tie, return false?
             }
         }
     }
-    return false;
+    return true;
 }
 
 // Eliminate the candidate (or candidates) in last place

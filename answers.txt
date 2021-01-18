@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Sort 1 had the fastest running time when sorting the sorted file. As bubble sort would perform the fastest in a situation where numbers have been sorted, sort 1 is bubble sort.
+
+sort2 uses: Merge Sort
+
+How do you know?: Sort2 was the fastest in sorting the random numbers file. When sorting random number patterns, merge sort has the shortest running time.
+
+sort3 uses: Selection Sort
+
+How do you know?: By process of elimination, sort 3 is selection sort. 

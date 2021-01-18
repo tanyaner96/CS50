@@ -4,19 +4,19 @@
 int main(void)
 {
     // TODO: Prompt for start size
-    int population_size = get_float("Population size: ");
+    int population_size = get_int("Population size: ");
 
     while (population_size < 9)
     {
-        population_size = get_float("Population size: ");
+        population_size = get_int("Population size: ");
     }
 
     // TODO: Prompt for end size
-    int end_size = get_float("End size: ");
-    
+    int end_size = get_int("End size: ");
+
     if (end_size < population_size)
     {
-        end_size = get_float("End size: ");
+        end_size = get_int("End size: ");
     }
     // TODO: Calculate number of years until we reach threshold
     int years = 0;

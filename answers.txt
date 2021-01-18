@@ -1,8 +1,8 @@
-sort1 uses: Merge Sort
+sort1 uses: Selection Sort
 
 How do you know?: Sort1 took the longest to complete sorting the randomly shuffled numbers of the three. Merge sort has the longest running time of the three sorting methods, at O(n log n). Therefore, sort1 should be Merge sort.
 
-sort2 uses: Selection Sort
+sort2 uses: Merge Sort
 
 How do you know?: Sort2 was the fastest in sorting the reversed numbers file. When sorting reversed number patterns, selection sort has the shortest running time.
 

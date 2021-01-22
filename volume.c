@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     while (fread(&buffer, sizeof(int16_t), 1, input)) //read samples
     {
         buffer = buffer * factor;
-        fwrite(&buffer, sizeof(int16_t), 1, input); //need to multiply each sample by the factor
+        fwrite(&buffer, sizeof(int16_t), 1, output); //need to multiply each sample by the factor
     }
 
     // Close files

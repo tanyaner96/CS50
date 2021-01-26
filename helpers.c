@@ -9,9 +9,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     //Set colour value to the average value (round to nearest integer)
 
 
-    for (int i = 0; i < height-1; i ++)
+    for (int i = 0; i < height; i ++)
     {
-        for (int j = 0; j < width-1; j++)
+        for (int j = 0; j < width; j++)
         {
             //float red = image[i][j].rgbtRed;
             //float blue = image[i][j].rgbtBlue;

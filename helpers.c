@@ -145,120 +145,28 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-
-     for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-
-            float avg_red;
-            float avg_blue;
-            float avg_green;
-
-            //Corners
-
-            if ((i-1) < 0 && (j-1) < 0)
-            {
-                avg_red = (copy[i][j].rgbtRed + copy[i][j+1].rgbtRed + copy[i+1][j].rgbtRed + copy[i+1][j+1].rgbtRed)/4.0;
-                avg_blue = (copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue + copy[i+1][j].rgbtBlue + copy[i+1][j+1].rgbtBlue)/4.0;
-                avg_green = (copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen + copy[i+1][j].rgbtGreen + copy[i+1][j+1].rgbtGreen)/4.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            float count = 0.0;
+            float sumR = 0.0;
+            float sumG = 0.0;
+            float sumB = 0.0;
+            for (int p = -1; p < 2; p++) {
+                for (int q = -1; q < 2; q++) {
+                    if (i + p < 0 || i + p > height - 1 || j + q < 0 || j + q > height - 1) {
+                        continue;
+                    }
+                    else {
+                        sumR += copy[i+p][j+q].rgbtRed;
+                        sumG += copy[i+p][j+q].rgbtGreen;
+                        sumB += copy[i+p][j+q].rgbtBlue;
+                        count += 1.0;
+                    }
+                }
             }
-
-            else if ((i+1) > height-1 && (j+1) > width-1)
-            {
-                avg_red = (copy[i-1][j-1].rgbtRed + copy[i-1][j].rgbtRed + copy[i][j-1].rgbtRed + copy[i][j].rgbtRed)/4.0;
-                avg_blue = (copy[i-1][j-1].rgbtBlue + copy[i-1][j].rgbtBlue + copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue)/4.0;
-                avg_green = (copy[i-1][j-1].rgbtGreen + copy[i-1][j].rgbtGreen + copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen)/4.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
-            else if ((i-1) < 0 && (j+1) > width-1)
-            {
-                avg_red = (copy[i][j-1].rgbtRed + copy[i][j].rgbtRed + copy[i+1][j-1].rgbtRed + copy[i+1][j].rgbtRed)/4.0;
-                avg_blue = (copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue + copy[i+1][j-1].rgbtBlue + copy[i+1][j].rgbtBlue)/4.0;
-                avg_green = (copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen + copy[i+1][j-1].rgbtGreen + copy[i+1][j].rgbtGreen)/4.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-                
-            }
-
-            else if ((i+1) > height-1 && (j-1) < 0) 
-            
-            {
-                avg_red = (copy[i-1][j].rgbtRed + copy[i-1][j+1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed)/4.0;
-                avg_blue = (copy[i-1][j].rgbtBlue + copy[i-1][j+1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue)/4.0;
-                avg_green = (copy[i-1][j].rgbtGreen + copy[i-1][j+1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen)/4.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            
-            }
-            
-            else if ((i-1) < 0) // sides?
-            {
-                avg_red = (copy[i][j-1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed + copy[i+1][j-1].rgbtRed + copy[i+1][j].rgbtRed + copy[i+1][j+1].rgbtRed)/6.0;
-                avg_blue = (copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue + copy[i+1][j-1].rgbtBlue + copy[i+1][j].rgbtBlue + copy[i+1][j+1].rgbtBlue)/6.0;
-                avg_green = (copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen + copy[i+1][j-1].rgbtGreen + copy[i+1][j].rgbtGreen + copy[i+1][j+1].rgbtGreen)/6.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
-            else if ((j-1) < 0)
-            {
-                avg_red = (copy[i-1][j].rgbtRed + copy[i-1][j+1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed + copy[i+1][j].rgbtRed + copy[i+1][j+1].rgbtRed)/6.0;
-                avg_blue = (copy[i-1][j].rgbtBlue + copy[i-1][j+1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue + copy[i+1][j].rgbtBlue + copy[i+1][j+1].rgbtBlue)/6.0;
-                avg_green = (copy[i-1][j].rgbtGreen + copy[i-1][j+1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen + copy[i+1][j].rgbtGreen + copy[i+1][j+1].rgbtGreen)/6.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
-            else if ((i+1) > height-1)
-            {
-                avg_red = (copy[i-1][j-1].rgbtRed + copy[i-1][j].rgbtRed + copy[i-1][j+1].rgbtRed + copy[i][j-1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed)/6.0;
-                avg_blue = (copy[i-1][j-1].rgbtBlue + copy[i-1][j].rgbtBlue + copy[i-1][j+1].rgbtBlue + copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue)/6.0;
-                avg_green = (copy[i-1][j-1].rgbtGreen + copy[i-1][j].rgbtGreen + copy[i-1][j+1].rgbtGreen + copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen)/6.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
-            else if ((j+1) > width-1)
-            {
-                avg_red = (copy[i-1][j-1].rgbtRed + copy[i-1][j].rgbtRed + copy[i][j-1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed + copy[i+1][j-1].rgbtRed)/6.0;
-                avg_blue = (copy[i-1][j-1].rgbtBlue + copy[i-1][j].rgbtBlue + copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue + copy[i+1][j-1].rgbtBlue)/6.0;
-                avg_green = (copy[i-1][j-1].rgbtGreen + copy[i-1][j].rgbtGreen + copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen + copy[i+1][j-1].rgbtGreen)/6.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
-            else
-            {
-                avg_red = (copy[i-1][j-1].rgbtRed + copy[i-1][j].rgbtRed + copy[i-1][j+1].rgbtRed + copy[i][j-1].rgbtRed + copy[i][j].rgbtRed + copy[i][j+1].rgbtRed + copy[i+1][j-1].rgbtRed + copy[i+1][j].rgbtRed + copy[i+1][j+1].rgbtRed)/9.0;
-                avg_blue = (copy[i-1][j-1].rgbtBlue + copy[i-1][j].rgbtBlue + copy[i-1][j+1].rgbtBlue + copy[i][j-1].rgbtBlue + copy[i][j].rgbtBlue + copy[i][j+1].rgbtBlue + copy[i+1][j-1].rgbtBlue + copy[i+1][j].rgbtBlue + copy[i+1][j+1].rgbtBlue)/9.0;
-                avg_green = (copy[i-1][j-1].rgbtGreen + copy[i-1][j].rgbtGreen + copy[i-1][j+1].rgbtGreen + copy[i][j-1].rgbtGreen + copy[i][j].rgbtGreen + copy[i][j+1].rgbtGreen + copy[i+1][j-1].rgbtGreen + copy[i+1][j].rgbtGreen + copy[i+1][j+1].rgbtGreen)/9.0;
-
-                image[i][j].rgbtRed = round(avg_red);
-                image[i][j].rgbtBlue = round(avg_blue);
-                image[i][j].rgbtGreen = round(avg_green);
-            }
-
+            image[i][j].rgbtRed = round(sumR/count);
+            image[i][j].rgbtGreen = round(sumG/count);
+            image[i][j].rgbtBlue = round(sumB/count);
         }
     }
 

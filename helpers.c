@@ -96,11 +96,11 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     //Swap pixels horizontally on opposite sides
     //if there's an odd number of pixels, the middle number stays the same. if there's an even number of pixels, everyone swaps
 
-    int length = width;
+    int length = width - 1;
 
         for (int i = 0; i < height; i++)
     {
-            for (int j = 0; j < width/2; j++)
+            for (int j = 0; j < (width + 1 )/2; j++)
         {
                 int new_width = length - j;
 

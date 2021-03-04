@@ -79,6 +79,7 @@ person *create_family(int generations)
 
     // TODO: Return newly created person
     return p;
+    
 }
 
 // Free `p` and all ancestors of `p`.
@@ -92,14 +93,15 @@ void free_family(person *p)
 
     // TODO: Free parents
 
-    else
-    {
-        free_family(p->parents[0]);
-        free_family(p->parents[1]);
-        free(p);
-    }
+    
+        
+    free_family(p->parents[0]);
+        
+    free_family(p->parents[1]);
+        
 
     // TODO: Free child
+    free(p->parents);
    
 }
 

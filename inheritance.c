@@ -50,6 +50,13 @@ person *create_family(int generations)
     if (generations > 1)
     {
         // TODO: Recursively create blood type histories for parents (using create_family)
+        person *tmp = malloc(2*sizeof(person));
+        
+        if(tmp == NULL)
+        {
+            return false;
+        }
+        
         p->parents[0] = create_family(generations-1);
         p->parents[1] = create_family(generations-1);
 
@@ -84,15 +91,15 @@ void free_family(person *p)
     }
 
     // TODO: Free parents
-    else
-    {
-        free_family(p->parents[0]);
-        free_family(p->parents[1]);
-    }
+
+
+    free_family(p->parents[0]);
+    free_family(p->parents[1]);
+
     
 
     // TODO: Free child
-    free_family(p);
+    free(p);
 }
 
 // Print each family member and their alleles.

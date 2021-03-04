@@ -40,7 +40,7 @@ int main(void)
 person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
-    person *p = malloc(2 * sizeof(person));
+    person *p = malloc(sizeof(person));
     if (p == NULL)
     {
         return false;
@@ -50,12 +50,7 @@ person *create_family(int generations)
     if (generations > 1)
     {
         // TODO: Recursively create blood type histories for parents (using create_family)
-        //person *tmp = malloc(2*sizeof(person));
         
-        //if(tmp == NULL)
-        {
-            //return false;
-        }
         
         p->parents[0] = create_family(generations-1);
         p->parents[1] = create_family(generations-1);

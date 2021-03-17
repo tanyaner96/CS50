@@ -71,16 +71,15 @@ unsigned int hash(const char *word)
     // Source: djib2 by Dan Bernstein (https://stackoverflow.com/questions/7666509/hash-function-for-string)
     
     unsigned long hash = 5381;
-    int c = *word;
-    c = tolower(c);
+    int c;
     
-    while ((c = *word++))
+    while ((c = tolower(*word++)))
     {
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
     }
             
 
-    return hash%N;
+    return hash % N;
     
     //return 0;
 }
@@ -96,11 +95,18 @@ bool load(const char *dictionary)
     //Insert node into hash table at that value 
     
     FILE *file = fopen(dictionary, "r");
-    char buffer[LENGTH + 1];
+    
+    if (file == NULL)
+    {
+        return false;
+    }
+    
+    
+    char word[LENGTH + 1];
     
     if (file != NULL)
     {
-        while (fscanf(file, "%s", buffer) != EOF)//while fscaf is not EOF 
+        while (fscanf(file, "%s", word) != EOF)//while fscaf is not EOF 
         {
             //malloc
             node *n = malloc(sizeof(node)); 
@@ -113,10 +119,10 @@ bool load(const char *dictionary)
             else
             {
                 //strcpy the word into node
-                strcpy(n->word, buffer);
+                strcpy(n->word, word);
                 
                 //hash the node TODO
-                hash_val = hash(buffer);
+                hash_val = hash(word);
                 n->next = table[hash_val];
                 table[hash_val] = n;
                 word_count = word_count + 1;

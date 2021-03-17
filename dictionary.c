@@ -46,7 +46,7 @@ bool check(const char *word)
     while (cursor != NULL)
     {
         //check if word is in the dictionary
-        if (strcasecmp(word, cursor->word))
+        if (strcasecmp(word, cursor->word) == 0)
         {
             return true;
         }
@@ -160,9 +160,9 @@ bool unload(void)
         
         while (cursor != NULL)
         {
-            node *tmp = cursor->next;
-            free(cursor);
-            cursor = tmp;
+            node *tmp = cursor;
+            cursor = cursor->next;
+            free(tmp);
         }
         
         if (cursor == NULL)

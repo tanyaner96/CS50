@@ -101,7 +101,6 @@ bool load(const char *dictionary)
         return false;
     }
     
-    
     char word[LENGTH + 1];
     
     if (file != NULL)
@@ -110,27 +109,27 @@ bool load(const char *dictionary)
         {
             //malloc
             node *n = malloc(sizeof(node)); 
+            
             //check if null 
             if (n == NULL)
             {
                 return false;
             }
         
-            else
-            {
-                //strcpy the word into node
-                strcpy(n->word, word);
+           
+            //strcpy the word into node
+            strcpy(n->word, word);
+              
+            //hash the node TODO
+            hash_val = hash(word);
+            n->next = table[hash_val];
+            table[hash_val] = n;
+            word_count = word_count + 1;
                 
-                //hash the node TODO
-                hash_val = hash(word);
-                n->next = table[hash_val];
-                table[hash_val] = n;
-                word_count = word_count + 1;
-                
-            }
+        }   
         fclose(file);
         
-        }
+        
     }
 
     return true;
@@ -165,7 +164,7 @@ bool unload(void)
             free(tmp);
         }
         
-        if (cursor == NULL)
+        if (i == N - 1 && cursor == NULL)
         {
             return true;
         }

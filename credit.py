@@ -42,16 +42,14 @@ def main():
     total = odd_total + even_total
     #print("Total: " + str(total))
     
+    #get number of digits in total
     total_len = len(str(total))
     
+    #check if the last digit is 0 or not
     if (str(total))[total_len - 1] != str(0):
         print("INVALID")
     else:
         print(card_type)
-    
-    
-   
-
 
 main()
             

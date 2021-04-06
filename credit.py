@@ -17,28 +17,31 @@ def main():
     elif number[0] == str(4):
         card_type = "VISA"
     
-    for i in range(len(number)):
-        if i%2 == 0:
-           x = int(number[i]) * 2
-           #print(x) #print out multiplied by 2 numbers 
-           
-           if len(str(x)) > 1:
+
+    start = len(number) - 2
+
+    for i in range(start, 0, -2):
+        #print(number[n])
+        x = int(number[i]) * 2
+        if len(str(x)) > 1:
                 x = str(x)
                 first_digit = int(x[0])
                 second_digit = int(x[1])
                 x = first_digit + second_digit
-           
-           odd_total = odd_total + x
-    #print("Odd total: " + str(odd_total))
+        odd_total = odd_total + x
+    print("Odd total: " + str(odd_total))
     
-    for i in range(len(number)):
-        if i%2 != 0:
-            y = int(number[i])
-            even_total = even_total + int(number[i])
-    #print("Even total: " + str(even_total))
+    for i in range(start+1 , 0 , -2):
+        y = int(number[i])
+        even_total = even_total + int(number[i])
+    
+    if len(number) % 2 != 0:
+        even_total = even_total + int(number[0])
+    
+    print("Even total: " + str(even_total))
     
     total = odd_total + even_total
-    #print("Total: " + str(total))
+    print("Total: " + str(total))
     
     total_len = len(str(total))
     

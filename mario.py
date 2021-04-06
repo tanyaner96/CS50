@@ -17,6 +17,6 @@ def mario(height):
     #left side
     for i in range(height):
         space = height - row
-        print((" " * space)+("#" * row)+(" ")+("#" * row))
+        print((" " * space)+("#" * row)+("  ")+("#" * row))
         row = row + 1 
 main()

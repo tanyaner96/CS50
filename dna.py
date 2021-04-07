@@ -96,7 +96,7 @@ else:
     max_TATC = max(most_TATC)
 
 dna = [str(max_AGATC), str(max_AATG), str(max_TATC)]
-print(dna)
+#print(dna)
 
 with open(argv[1], "r") as file1:
         reader1 = csv.reader(file1)

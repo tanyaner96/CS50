@@ -5,8 +5,6 @@
 --SELECT rating FROM ratings WHERE movie_id IN (SELECT id FROM movies WHERE year = '2010'); -- ratings of movies in 2010 
 
 SELECT title, rating FROM movies
-
 JOIN ratings ON movies.id = ratings.movie_id
-
 ORDER BY rating desc, title asc;
 

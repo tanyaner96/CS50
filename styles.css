@@ -1,0 +1,69 @@
+.large
+{
+    font-size: large;
+}
+
+.medium
+{
+    font-size: medium;
+}
+
+.small
+{
+    font-size: small;
+}
+
+.center
+{
+    text-align: center;
+}
+
+.left
+{
+    text-align: left;
+}
+
+.right
+{
+    text-align: right;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+.pic-center
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pic-1100-left
+{
+  display: inline-block;
+  margin-left: 1100px;
+}
+
+.ex1
+{
+  margin-left: 215px;
+  font-weight: bold;
+}
+
+.ex2 
+{
+  margin-left: 215px;
+}
+
+.doublepara
+{
+    margin-top: 50px;
+}
+
+.border
+{
+    border: 10px;
+    border-radius: 5px;
+}
+

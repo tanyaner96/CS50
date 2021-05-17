@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Calculate your BMI</title>
+        
+        <script>
+            function bmi()
+            {
+                var weight = document.getElementById("weight").value;
+                var height = document.getElementById("height").value;
+                
+                var bmi = (weight / ((height * height)/ 10000)).toFixed(1);
+                
+                document.querySelector('#bmi_index').innerHTML = "Your BMI is" + " " + bmi 
+                
+                if (bmi > 27.4)
+                {
+                    document.querySelector('#feedback').innerHTML = "You are at high risk of obesity-related diseases!" 
+                }
+                else if (bmi < 18.5)
+                {
+                    document.querySelector('#feedback').innerHTML = "You are at high risk of nutritional deficiency diseases and osteoporosis!" 
+                }
+                else if (bmi > 18.4 && bmi < 23)
+                {
+                    document.querySelector('#feedback').innerHTML = "You are at low risk of obesity-related diseases!"
+                }
+                else
+                {
+                    document.querySelector('#feedback').innerHTML = "You are at moderate risk of obesity-related diseases!"
+                }
+            }
+           
+            
+            
+        </script>
+        
+    </head>
+        
+        <header class= "center large">
+             <h1> BMI Calculator </h1>
+        </header>
+    
+    <body>
+        <p></p>
+        
+        <header class= " medium center">
+        <h2> Menu </h2>
+        
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-sm">
+                    <div class="alert alert-info" role="alert"> <a href="index.html">Index</a> 
+                    </div>
+                </div>
+                
+                <div class="col-sm">
+                    <div class="alert alert-info" role="alert"> <a href="page1.html">BMI</a> 
+                    </div>
+                </div>
+                
+                <div class="col-sm">
+                    <div class="alert alert-info" role="alert"> <a href="page2.html">Metric Wins</a>
+                    </div>
+                </div>
+                
+                <div class="col-sm">
+                    <div class="alert alert-info" role="alert"> <a href="page3.html">Running Jam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <main class = "left">
+            <p></p>
+            <p class=" center bold p-3 mb-2 bg-info text-white large">Calculate your BMI</p>
+            <p class = "center">Your BMI can serve as an indication of whether you are in a healthy weight range!</p>
+            
+            <p class = "doublepara"></p>
+            
+            
+            <p class = "ex1 text-success">What is your weight?</p>
+            <form class = 'ex1' onsubmit = "bmi(); return false">
+                <input id = "weight" autocomplete="off" autofocus placeholder="Enter your weight here" type="text"> kg
+                <p></p>
+            </form>
+            
+            <p></p>
+            
+            <p class = "ex1 text-success">What is your height?</p>
+            <form class = 'ex1' onsubmit = "bmi(); return false">
+                <input id = "height" autocomplete="off" autofocus placeholder="Enter your height here" type="text"> cm
+                <p></p>
+                
+                <input type = "submit">
+                
+            </form>
+            
+            <p></p>
+            
+            <p id="bmi_index" class = "ex1"> </p>
+            <p id = "feedback" class = "ex1 text-info"> </p>
+            
+            
+            <img src = "image_weighing scale.jpg" width="300" height="300" class="pic-1100-left">
+            <p class="pic-1100-left"><a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by vectorjuice - www.freepik.com</a></p>
+            
+            
+        </main>
+        
+    </body>
+</html>

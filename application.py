@@ -49,6 +49,8 @@ def index():
     user_cash = db.execute("SELECT cash from users WHERE id = ?", session["user_id"])[0]["cash"]
     stocks = db.execute("SELECT symbol, SUM(shares) as shares, operation FROM stocks WHERE userID = ? GROUP BY symbol HAVING (SUM(shares)) > 0;", session["user_id"])
     
+    total_stocks = 0
+    
     for stock in stocks:
         quote = lookup(stock["symbol"])
         stock["name"] = quote["name"]

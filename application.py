@@ -47,7 +47,7 @@ if not os.environ.get("API_KEY"):
 def index():
     """Show portfolio of stocks"""
     user_cash = db.execute("SELECT cash from users WHERE id = ?", session["user_id"])[0]["cash"]
-    stocks = db.execute("SELECT symbol, SUM(shares) as shares, operation FROM stocks WHERE userID = ? GROUP BY symbol HAVING (SUM(shares)) > 0;", session["user_id"]))
+    stocks = db.execute("SELECT symbol, SUM(shares) as shares, operation FROM stocks WHERE userID = ? GROUP BY symbol HAVING (SUM(shares)) > 0;", session["user_id"])
     
     for stock in stocks:
         quote = lookup(stock["symbol"])

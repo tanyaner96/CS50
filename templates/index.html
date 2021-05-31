@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+        <tr>
+            <th>Stock symbol</th>
+            <th>Stock name</th>
+            <th>Number of shares</th>
+            <th>Current price</th>
+            <th>Total value</th>
+        </tr>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{stock.symbol}}</td>
+                <td>{{stock.name}}</td>
+                <td>{{stock.shares}}</td>
+                <td>{{stock.price}}</td>
+                <td>{{stock.total}}</td>
+            </tr>
+            {% endfor %}
+            
+            <tr>
+                <td>Cash</td>
+                <td>{{user_cash.cash | usd}}</td>
+            </tr>
+            <tr>
+                <td>{{total_cash | usd}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <form action="/index" method="post">
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="add" placeholder="Amount" type="number">
+                <button class="btn btn-primary" type="submit">Add cash</button>
+            </form>
+        </tfoot>
+    </table>
+{% endblock %}

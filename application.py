@@ -57,8 +57,10 @@ def index():
         stock["total"] = round(float(stock["price"] * stock["shares"]),2)
         stock["price"] = quote["price"]
         total_stocks = total_stocks + stock["total"]
-    total_cash = total_stocks + user_cash
-
+        total_cash = total_stocks + user_cash
+    
+    
+    #If add cash
     if request.method == "POST":
         add_amt = request.form.get("add")
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", add_amt, session["user_id"])

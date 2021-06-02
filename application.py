@@ -99,7 +99,7 @@ def buy():
             return apology("Please input a whole number", 400)
 
         
-        cost = (price["price"]) * int(shares)
+        cost = (price["price"]) * float(shares)
 
 
         if user_cash < cost:

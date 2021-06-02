@@ -57,7 +57,7 @@ def index():
         stock["total"] = round(float(stock["price"] * stock["shares"]),2)
         stock["price"] = quote["price"]
         total_stocks = total_stocks + stock["total"]
-        total_cash = total_stocks + user_cash
+    total_cash = total_stocks + user_cash
     
     
     #If add cash

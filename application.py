@@ -47,10 +47,10 @@ if not os.environ.get("API_KEY"):
 def index():
     """Show portfolio of stocks"""
     user_cash = db.execute("SELECT cash from users WHERE id = ?", session["user_id"])[0]["cash"]
-    stocks = db.execute("SELECT symbol, SUM(shares) as shares, operation FROM stocks WHERE userID = ? GROUP BY symbol HAVING (SUM(shares)) > 0;", session["user_id"])
-    
+    stocks = db.execute("SELECT symbol, SUM(shares) as shares, operation, price FROM stocks WHERE userID = ? GROUP BY symbol HAVING (SUM(shares)) > 0;", session["user_id"])
+
     total_stocks = 0
-    
+
     for stock in stocks:
         quote = lookup(stock["symbol"])
         stock["name"] = quote["name"]
@@ -58,15 +58,15 @@ def index():
         stock["price"] = quote["price"]
         total_stocks = total_stocks + stock["total"]
     total_cash = total_stocks + user_cash
-    
+
     if request.method == "POST":
         add_amt = request.form.get("add")
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", add_amt, session["user_id"])
         return redirect("/")
-    
-    return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)   
 
-    
+    return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
+
+
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -78,15 +78,15 @@ def buy():
         shares = request.form.get("shares")
         price = lookup(symbol)["price"]
         user_cash = db.execute("SELECT cash from users WHERE id = ?", session["user_id"])[0]["cash"]
-        
+
         #Check for blank submission
         if not symbol:
             return apology("Please input stock symbol", 400)
-        
+
         #Check if stock exists
         elif price is None:
             return apology("Sorry, stock does not exist", 400)
-        
+
         #Check if shares is positive integer
         try:
             val = int(shares)
@@ -94,18 +94,18 @@ def buy():
                 return apology("Unable to buy less than 1 share", 400)
         except ValueError:
             return apology("Please input a whole number", 400)
-            
-        
+
+
         cost = price * shares
-        
-        
+
+
         if user_cash < cost:
             return apology("Insufficient funds", 400)
-        
-        else: 
+
+        else:
             db.execute("INSERT INTO stocks (userID, symbol, shares, price, operation) VALUES (?, ?, ?, ?, ?)", session["user_id"], symbol, shares, price, "buy",)
             return redirect("/")
-    else: 
+    else:
         return render_template("buy.html")
 
 
@@ -115,7 +115,7 @@ def history():
     """Show history of transactions"""
     stocks = db.execute("SELECT * FROM stocks WHERE userID = ?", session["user_id"])
     return render_template("history.html", stocks = stocks)
-    
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -172,10 +172,10 @@ def quote():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
-        
+
         if quote is None:
             return apology("Please input valid symbol.", 400)
-        
+
         else:
             render_template("quoted.html", name=quote["name"], symbol=quote["symbol"], price=quote["price"],)
     else:
@@ -190,25 +190,25 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-        
-        #Check for blank submissions. 
+
+        #Check for blank submissions.
         if not username:
             return apology("please provide a username.", 400)
         elif not password:
             return apology("please provide a password.", 400)
         elif confirmation != password:
             return apology("passwords do not match.", 400)
-       
+
         #Check for existing users.
         else:
             check = db.execute("SELECT * FROM users WHERE username = ?", username)
-           
+
             #If user doesn't exist, register user
             if len(check) == 0:
                 hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
                 db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
                 return redirect("/")
-            else: 
+            else:
                 return apology ("user already exists, please try another username.", 400)
     else:
         return render_template("register.html")
@@ -223,28 +223,28 @@ def sell():
         shares = request.form.get("shares")
         price = lookup(symbol)["price"]
         shares_value = price * shares
-        
+
         if not symbol:
             return apology("Please input stock symbol", 400)
         elif price is None:
             return apology("Sorry, stock does not exist", 400)
-            
+
         try:
             val = int(shares)
             if val < 0:
                 return apology("Unable to buy less than 1 share", 400)
         except ValueError:
             return apology("Please input a whole number", 400)
-        
+
         stocks = db.execute("SELECT SUM(shares) as shares FROM stocks WHERE userID = ? AND symbol = ?;", session["user_id"], symbol)[0]
-        
+
         if shares > stocks["shares"]:
             return apology("You have exceeded the number of shares available.", 400)
-            
+
         db.execute("INSERT INTO stocks (userID, symbol, shares, price, operation) VALUES (?, ?, ?, ?, ?)", session["user_id"], symbol, -shares, price, "sell")
-        
+
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", shares_value, session["user_id"])
-        
+
         return redirect("/")
 
     else:

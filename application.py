@@ -62,9 +62,10 @@ def index():
     if request.method == "POST":
         add_amt = request.form.get("add")
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", add_amt, session["user_id"])
-        return redirect("/")
+        return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
+    else:
 
-    return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
+        return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
 
 
 
@@ -96,7 +97,7 @@ def buy():
             return apology("Please input a whole number", 400)
 
 
-        cost = price * shares
+        cost = float(price) * int(shares)
 
 
         if user_cash < cost:

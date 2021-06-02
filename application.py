@@ -54,12 +54,12 @@ def index():
     for stock in stocks:
         quote = lookup(stock["symbol"])
         stock["name"] = quote["name"]
-        stock["total"] = quote["price"] * stock["shares"]
+        stock["total"] = stock["price"] * stock["shares"]
         stock["price"] = quote["price"]
         total_stocks = total_stocks + stock["total"]
-    
+
     total_cash = total_stocks + user_cash
-    
+
     #If add cash
     if request.method == "POST":
         add_amt = request.form.get("add")
@@ -99,7 +99,7 @@ def buy():
         except ValueError:
             return apology("Please input a whole number", 400)
 
-        
+
         cost = (price["price"]) * float(shares)
 
 
@@ -108,6 +108,7 @@ def buy():
 
         else:
             db.execute("INSERT INTO stocks (symbol, shares, price, operation, userID) VALUES (?, ?, ?, ?, ?)", symbol, shares, price["price"], "buy", session["user_id"])
+            db.execute("UPDATE users SET cash = cash - ? WHERE id = ?",cost, session["user_id"])
             return redirect("/")
     else:
         return render_template("buy.html")

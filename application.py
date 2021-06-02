@@ -98,15 +98,15 @@ def buy():
         except ValueError:
             return apology("Please input a whole number", 400)
 
-
-        cost = float(price) * int(shares)
+        
+        cost = (price["price"]) * int(shares)
 
 
         if user_cash < cost:
             return apology("Insufficient funds", 400)
 
         else:
-            db.execute("INSERT INTO stocks (userID, symbol, shares, price, operation) VALUES (?, ?, ?, ?, ?)", session["user_id"], symbol, shares, price, "buy",)
+            db.execute("INSERT INTO stocks (symbol, shares, price, operation, userID) VALUES (?, ?, ?, ?, ?)", symbol, shares, price["price"], "buy", session["user_id"])
             return redirect("/")
     else:
         return render_template("buy.html")

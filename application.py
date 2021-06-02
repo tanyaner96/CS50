@@ -77,7 +77,7 @@ def buy():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
-        price = lookup(symbol)["price"]
+        price = lookup(symbol)
         user_cash = db.execute("SELECT cash from users WHERE id = ?", session["user_id"])[0]["cash"]
 
         #Check for blank submission

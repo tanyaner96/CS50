@@ -83,7 +83,9 @@ def buy():
         #Check for blank submission
         if not symbol:
             return apology("Please input stock symbol", 400)
-
+        #Check for valid symbol
+        elif not lookup(symbol):
+            return apology("Please input a valid stock symbol", 400)
         #Check if stock exists
         elif price is None:
             return apology("Sorry, stock does not exist", 400)

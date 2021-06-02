@@ -227,7 +227,8 @@ def sell():
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
         price = lookup(symbol)["price"]
-        shares_value = price * shares
+        shares_value = price * float(shares)
+        #shares_value = price * shares
 
         if not symbol:
             return apology("Please input stock symbol", 400)
@@ -243,10 +244,10 @@ def sell():
 
         stocks = db.execute("SELECT SUM(shares) as shares FROM stocks WHERE userID = ? AND symbol = ?;", session["user_id"], symbol)[0]
 
-        if shares > stocks["shares"]:
+        if int(shares) > stocks["shares"]:
             return apology("You have exceeded the number of shares available.", 400)
 
-        db.execute("INSERT INTO stocks (userID, symbol, shares, price, operation) VALUES (?, ?, ?, ?, ?)", session["user_id"], symbol, -shares, price, "sell")
+        db.execute("INSERT INTO stocks (userID, symbol, shares, price, operation) VALUES (?, ?, ?, ?, ?)", session["user_id"], symbol, -int(shares), price, "sell")
 
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", shares_value, session["user_id"])
 

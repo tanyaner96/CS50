@@ -57,8 +57,8 @@ def index():
         stock["total"] = stock["price"] * stock["shares"]
         stock["price"] = quote["price"]
         total_stocks = total_stocks + stock["total"]
-    total_cash = total_stocks + user_cash
     
+    total_cash = total_stocks + user_cash
     
     #If add cash
     if request.method == "POST":
@@ -66,7 +66,6 @@ def index():
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", add_amt, session["user_id"])
         return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
     else:
-
         return render_template("index.html", stocks = stocks, user_cash = user_cash, total_cash = total_cash)
 
 
